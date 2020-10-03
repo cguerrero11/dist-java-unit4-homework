@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 @Controller
 public class HomeController {
@@ -28,12 +29,12 @@ public class HomeController {
         /**
          * Uncomment this section when you're ready to test your GlossaryTerm class.
          */
-//        try {
-//            terms = mapper.readValue(Paths.get("croquetGlossary.json").toFile(), GlossaryTerm[].class);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            terms = new GlossaryTerm[0];
-//        }
+        try {
+            terms = mapper.readValue(Paths.get("croquetGlossary.json").toFile(), GlossaryTerm[].class);
+        } catch (IOException e) {
+            e.printStackTrace();
+            terms = new GlossaryTerm[0];
+        }
 
     }
 
@@ -41,9 +42,7 @@ public class HomeController {
     public String showRulesPage(Model model) {
         model.addAttribute("pageTitle", "Rules of Golf Croquet");
 
-        /**
-         * Add the array of Strings to the model
-         */
+        model.addAttribute(rules);
 
         return "croquet-rules";
     }
@@ -52,9 +51,8 @@ public class HomeController {
     public String showGlossaryPage(Model model) {
         model.addAttribute("pageTitle", "Golf Croquet Glossary");
 
-        /**
-         * Add the array of GlossaryTerm objects to the model
-         */
+        
+        model.addAttribute(terms);
 
         return "croquet-glossary";
     }

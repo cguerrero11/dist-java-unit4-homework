@@ -7,7 +7,12 @@
 <div id="content">
     <h2>Rules of Golf Croquet</h2>
 
-    <!-- Create an unordered list of String objects here -->
+    <ul th:each="rule : ${croquet-rules}">
+
+        <li th:text="rule">
+
+        </li>
+    </ul>
 
 
 </div>
